@@ -1,7 +1,7 @@
 # Maintainer: Platon Pronko < platon7pronko at gmail dot com >
 
 pkgname="cryptopro-csp-k1"
-pkgver=4.0.9963
+pkgver=5.0.11455
 # pkgver is not allowed to contain forward slashes
 _pkgver_patch="5"
 _pkgver="$pkgver-$_pkgver_patch"
@@ -32,26 +32,26 @@ source=(
     'cades_linux_amd64.tar.gz'
 )
 md5sums=(
-    'eba649ae2c974a8c9d0cd69d2b508ae7'
-    'd3fbcb7a42f390657771f23712f64750'
+    'b87bbe581d2431c71b8ec79f4bf7303b'
+    'e0fa664ce9fba1b38e8a6c2b3e0c419c'
 )
 install=cryptopro-csp-k1.install
 options=(!strip)
 
 package() {
-    cd "$srcdir/linux-amd64"
-    bsdtar -xf "lsb-cprocsp-base-${_pkgver}.noarch.rpm" -C "$pkgdir"
-    bsdtar -xf "lsb-cprocsp-rdr-64-${_pkgver}.x86_64.rpm" -C "$pkgdir"
-    bsdtar -xf "lsb-cprocsp-kc1-64-${_pkgver}.x86_64.rpm" -C "$pkgdir"
-    bsdtar -xf "lsb-cprocsp-capilite-64-${_pkgver}.x86_64.rpm" -C "$pkgdir"
-    bsdtar -xf "lsb-cprocsp-ca-certs-${_pkgver}.noarch.rpm" -C "$pkgdir"
-    bsdtar -xf "cprocsp-rdr-gui-gtk-64-${_pkgver}.x86_64.rpm" -C "$pkgdir"
-    bsdtar -xf "cprocsp-rdr-pcsc-64-${_pkgver}.x86_64.rpm" -C "$pkgdir"
-    bsdtar -xf "cprocsp-rdr-jacarta-64-3.6.408.695-4.x86_64.rpm" -C "$pkgdir"
+    cd "$pkgdir"
+    rpm2cpio "$srcdir/linux-amd64/lsb-cprocsp-base-${_pkgver}.noarch.rpm" | bsdtar -xf -
+    rpm2cpio "$srcdir/linux-amd64/lsb-cprocsp-rdr-64-${_pkgver}.x86_64.rpm" | bsdtar -xf -
+    rpm2cpio "$srcdir/linux-amd64/lsb-cprocsp-kc1-64-${_pkgver}.x86_64.rpm" | bsdtar -xf -
+    rpm2cpio "$srcdir/linux-amd64/lsb-cprocsp-capilite-64-${_pkgver}.x86_64.rpm" | bsdtar -xf -
+    rpm2cpio "$srcdir/linux-amd64/lsb-cprocsp-ca-certs-${_pkgver}.noarch.rpm" | bsdtar -xf -
+    rpm2cpio "$srcdir/linux-amd64/lsb-cprocsp-devel-${_pkgver}.noarch.rpm" | bsdtar -xf -
+    rpm2cpio "$srcdir/linux-amd64/cprocsp-rdr-gui-gtk-64-${_pkgver}.x86_64.rpm" | bsdtar -xf -
+    rpm2cpio "$srcdir/linux-amd64/cprocsp-rdr-pcsc-64-${_pkgver}.x86_64.rpm" | bsdtar -xf -
+    rpm2cpio "$srcdir/linux-amd64/cprocsp-rdr-jacarta-64-5.0.0.1148-4.x86_64.rpm" | bsdtar -xf -
 
-    cd "$srcdir/cades_linux_amd64"
-    bsdtar -xf "cprocsp-pki-2.0.0-amd64-cades.rpm" -C "$pkgdir"
-    bsdtar -xf "cprocsp-pki-2.0.0-amd64-plugin.rpm" -C "$pkgdir"
+    rpm2cpio "$srcdir/cades_linux_amd64/cprocsp-pki-2.0.0-amd64-cades.rpm" | bsdtar -xf -
+    rpm2cpio "$srcdir/cades_linux_amd64/cprocsp-pki-2.0.0-amd64-plugin.rpm" | bsdtar -xf -
 
     rm -r "$pkgdir/etc/init.d/"
     mv "$pkgdir/tmp/" "$pkgdir/opt/cprocsp/tmp/"
