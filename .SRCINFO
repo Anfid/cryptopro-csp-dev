@@ -1,9 +1,9 @@
-pkgbase = cryptopro-csp-k1
+pkgbase = cryptopro-csp-dev
 	pkgdesc = CryptoPro CSP 4.0
 	pkgver = 4.0.9963
 	pkgrel = 0
 	url = https://cryptopro.ru/products/cryptopro-csp
-	install = cryptopro-csp-k1.install
+	install = cryptopro-csp-dev.install
 	arch = x86_64
 	license = proprietary
 	makedepends = libarchive
@@ -25,5 +25,5 @@ pkgbase = cryptopro-csp-k1
 	md5sums = eba649ae2c974a8c9d0cd69d2b508ae7
 	md5sums = d3fbcb7a42f390657771f23712f64750
 
-pkgname = cryptopro-csp-k1
+pkgname = cryptopro-csp-dev
 
